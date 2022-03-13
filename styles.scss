@@ -1,1 +1,38 @@
 @import "resets";
+
+$blue: #DFF6F2;
+$grey: #EDEDF4;
+$pink: #EE4266;
+
+#container {
+    width: 100vw;
+    height: 100vh;
+
+    display: grid;
+    grid-template-columns: 240px 5fr;
+    grid-template-rows: 1fr 4fr;
+    grid-template-areas:
+        "sidebar    header"
+        "sidebar    content";
+}
+
+#sidebar {
+    grid-area: sidebar;
+
+    background-color: $pink;
+}
+
+#header {
+    grid-area: header;
+    /* Fix for box-shadow */
+    position: relative;
+
+    background-color: white;
+    box-shadow: 2px 4px 4px rgba(black, 0.15);
+}
+
+#content {
+    grid-area: content;
+
+    background-color: $blue;
+}
