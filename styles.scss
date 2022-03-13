@@ -15,8 +15,8 @@ body {
     height: 100vh;
 
     display: grid;
-    grid-template-columns: 240px 5fr;
-    grid-template-rows: 1fr 4fr;
+    grid-template-columns: 240px minmax(0, 5fr);
+    grid-template-rows: minmax(0, 1fr) minmax(0, 4fr);
     grid-template-areas:
         "sidebar    header"
         "sidebar    content";
@@ -68,11 +68,123 @@ body {
 
 #header {
     grid-area: header;
+    padding: 15px 60px 15px 30px;
     /* Fix for box-shadow */
     position: relative;
 
+    display: grid;
+    grid-template-areas:
+        "search     profile profile profile"
+        "greeting   new     upload  share";
+    grid-template-rows: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(300px, 1fr) repeat(3, 100px);
+    gap: 10px;
+    align-items: center;
+
     background-color: white;
     box-shadow: 2px 4px 4px rgba(black, 0.15);
+}
+
+.search {
+    grid-area: search;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 0 30px 0 0;
+
+    form {
+        flex: 1;
+    }
+
+    input {
+        height: 30px;
+        width: 100%;
+        border: none;
+        border-radius: 15px;
+        padding: 15px;
+
+        background: $blue;
+        font-size: 16px;
+    }
+
+    input:focus {
+        outline: 1px solid $pink;
+    }
+}
+
+.profileLink {
+    grid-area: profile;
+    justify-self: right;
+
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    padding: 0 30px 0 0;
+
+    font-weight: 500;
+
+    .avatar {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+.greeting {
+    grid-area: greeting;
+
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    h3 {
+        margin-bottom: 5px;
+
+        font-weight: 300;
+        font-size: 12px;
+    }
+
+    h2 {
+        font-weight: 500;
+    }
+
+    .avatar {
+        width: 48px;
+        height: 48px;
+    }
+}
+
+.headerButton {
+    justify-self: center;
+
+    button {
+        height: 40px;
+        width: 90px;
+        border: none;
+        border-radius: 20px;
+
+        background-color: $pink;
+        color: white;
+        text-align: center;
+        font-size: 14px;
+        font-family: inherit;
+    }
+}
+
+.newButton {
+    grid-area: new;
+}
+
+.uploadButton {
+    grid-area: upload;
+    justify-self: center;
+}
+
+.shareButton {
+    grid-area: share;
+    justify-self: center;
 }
 
 #content {
